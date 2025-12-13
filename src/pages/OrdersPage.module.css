@@ -1,0 +1,215 @@
+.ordersPage {
+  background: #f7fafc;
+  min-height: 70vh;
+  padding: 2.3rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+.ordersContainer {
+  max-width: 540px;
+  width: 100%;
+  background: #fff;
+  border-radius: 1.7rem;
+  box-shadow: 0 5px 24px #c8aa6521;
+  border: 1.3px solid #eae2d3;
+  padding: 2.3rem 2rem 1.4rem 2rem;
+}
+.ordersContainer h2 {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #c8aa65;
+  margin-bottom: 2rem;
+}
+.orderCard {
+  padding: 1.7rem 1rem;
+  margin-bottom: 2.1rem;
+  background: #f8f6ee;
+  border-radius: 1.15rem;
+  box-shadow: 0 2px 9px #c8aa6555;
+  border: 1.3px solid #eceadd;
+  position: relative;
+}
+
+.orderTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+.orderNum {
+  font-weight: 800;
+  color: #444;
+  font-size: 1.11rem;
+}
+.orderStatus {
+  padding: 0.31rem 1.2rem;
+  font-size: 1.07rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  color: #fff;
+  box-shadow: 0 2px 8px #c8aa6544;
+}
+
+.progressBar {
+  display: flex;
+  gap: 1.4rem;
+  margin-bottom: 0.93rem;
+  margin-top: 0.2rem;
+}
+.progressStep {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #ae9028;
+  border-bottom: 3px solid #bdb175;
+  padding: 0.28rem 0.6rem 0.02rem 0.6rem;
+  border-radius: 0.5rem;
+  opacity: 0.44;
+  background: #f4ecda;
+}
+.stepDone {
+  color: #54bb39 !important;
+  border-color: #54bb39 !important;
+  opacity: 0.9;
+  background: #e9fbe7;
+}
+
+.orderMeta {
+  display: flex;
+  gap: 2.4rem;
+  color: #626141;
+  font-size: 1.04rem;
+  margin-bottom: 0.9rem;
+}
+.orderItems {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.7rem;
+}
+.orderItem {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 6px #c8aa6520;
+  padding: 0.55rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.orderItem img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 0.6rem;
+  border: 1.2px solid #f1e3bc;
+  background: #f9efe5;
+}
+.orderItemName {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4f390a;
+}
+.orderItemQty {
+  font-size: 0.94rem;
+  color: #95843c;
+}
+
+.cancelBtn {
+  background: linear-gradient(90deg,#f76262 65%,#ffe0b2 120%);
+  color: #fff;
+  font-size: 1.03rem;
+  font-weight: 800;
+  border-radius: 0.75rem;
+  border: none;
+  padding: 0.57rem 1.2rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #f7626230;
+  transition: background 0.14s;
+}
+.cancelBtn:hover {
+  background: linear-gradient(90deg,#e53935 80%,#ffe0b2 120%);
+}
+
+.reviewBtn {
+  background: linear-gradient(90deg, #c8aa65 75%, #097cf6 120%);
+  color: #fff;
+  font-size: 1.02rem;
+  border-radius: 0.7rem;
+  border: none;
+  margin-top: 0.5rem;
+  padding: 0.47rem 0.97rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 8px #c8aa6520;
+  transition: background 0.14s;
+}
+.reviewBtn:hover {
+  background: linear-gradient(90deg, #097cf6 80%, #c8aa65 120%);
+}
+.reviewDone { 
+  color: #54bb39; 
+  font-weight: 900; 
+  font-size: 1.08rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+/* Review Modal */
+.reviewModal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #00000055;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.reviewModalContent {
+  background: #fffdf8;
+  padding: 2rem 1.5rem;
+  border-radius: 1.3rem;
+  box-shadow: 0 6px 40px #c8aa6537;
+  min-width: 300px;
+  max-width: 90vw;
+}
+.reviewModalContent h4 { 
+  font-size: 1.15rem; 
+  color: #c8aa65; 
+  font-weight: 800; 
+  margin-bottom: 1.2rem; }
+.reviewTextarea {
+  width: 100%;
+  border: 1.3px solid #ecdec3;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  background: #f8f6ee;
+  resize: vertical;
+}
+.reviewModalActions {
+  display: flex;
+  gap: 1.1rem;
+}
+.submitReviewBtn {
+  background: linear-gradient(90deg, #54bb39 60%, #c8aa65 120%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.07rem;
+  border-radius: 0.8rem;
+  border: none;
+  padding: 0.6rem 1.15rem;
+  box-shadow: 0 1px 8px #54bb3933;
+  cursor: pointer;
+}
+.cancelReviewBtn {
+  background: #f8f6ee;
+  color: #a28239;
+  border-radius: 0.8rem;
+  font-weight: 700;
+  border: none;
+  padding: 0.6rem 1.12rem;
+  cursor: pointer;
+  border: 1.2px solid #ecd282;
+}

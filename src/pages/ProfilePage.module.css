@@ -1,0 +1,134 @@
+.profilePage {
+  background: #f7fafc;
+  min-height: 68vh;
+  padding: 3.3rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profileContainer {
+  background: #fffdf8;
+  border-radius: 1.8rem;
+  max-width: 410px;
+  width: 100%;
+  box-shadow: 0 7px 30px #c8aa6520;
+  border: 1.6px solid #eceadd;
+  padding: 2.7rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Avatar (show initials if no image) */
+.profileAvatar {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 18px #c8aa6530;
+  border: 2.8px solid #c8aa65;
+  margin-bottom: 1.12rem;
+}
+.profileAvatarInitials {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ede4d4, #c8aa65 86%);
+  color: #fff;
+  font-size: 2.85rem;
+  font-weight: 900;
+  box-shadow: 0 2px 18px #c8aa6565;
+  margin-bottom: 1.12rem;
+  letter-spacing: 1px;
+  border: 2.8px solid #c8aa65;
+}
+
+/* Editable Form Fields */
+.editForm {
+  width: 100%;
+}
+
+.profileFieldRow {
+  margin-bottom: 1.09rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileFieldRow label {
+  font-size: 1.07rem;
+  font-weight: 600;
+  color: #8a834c;
+  margin-bottom: 0.27rem;
+  margin-left: 0.2rem;
+}
+
+.profileFieldRow input,
+.profileFieldRow textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.25px solid #d6cfb8;
+  border-radius: 0.9rem;
+  font-size: 1.07rem;
+  background: #fdfaf4;
+  color: #232a2e;
+  transition: border-color 0.18s, background 0.14s;
+}
+.profileFieldRow input:disabled,
+.profileFieldRow textarea:disabled {
+  background: #f7f6ee;
+  color: #b1ac8b;
+  border-color: #efecd7;
+  opacity: 1;
+}
+
+.profileFieldRow input:focus,
+.profileFieldRow textarea:focus {
+  border-color: #c8aa65;
+  background: #fffbe9;
+}
+
+.profileActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+/* Action Buttons */
+.profileEditBtn,
+.profileSaveBtn,
+.profileCancelBtn,
+.profileLogoutBtn {
+  background: linear-gradient(90deg, #c8aa65 70%, #097cf6 120%);
+  color: #fff;
+  padding: 0.68rem 1.25rem;
+  font-size: 1.04rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 9px #c8aa6521;
+  transition: background 0.12s, color 0.14s;
+}
+
+.profileCancelBtn {
+  background: #ebe6d5;
+  color: #c8aa65;
+  border: 1.5px solid #dec884;
+}
+.profileCancelBtn:hover { background: #f6f6f0; color: #222;}
+.profileEditBtn:hover,
+.profileSaveBtn:hover { background: #097cf6; color: #fff; }
+.profileLogoutBtn {
+  background: #e53935;
+  color:#fff;
+  margin-left: 8px;
+}
+.profileLogoutBtn:hover {
+  background: #c8aa65;
+  color:#1d1515;
+}

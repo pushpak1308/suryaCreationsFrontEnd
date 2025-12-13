@@ -1,0 +1,57 @@
+.adminUsers {
+  background: #fff;
+  border-radius: 1.2rem;
+  padding: 2rem;
+  box-shadow: 0 2px 14px #e9e1cb33;
+  max-width: 900px;
+  margin: 1rem auto;
+}
+.adminUsers h2 {
+  color: #174a7c;
+  margin-bottom: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.usersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f9f7ef;
+}
+.usersTable th, .usersTable td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #ecddbe;
+  font-size: 1.07rem;
+}
+.usersTable th {
+  background: #f6ecce;
+  color: #745c28;
+  font-weight: 800;
+}
+.usersTable button {
+  padding: 0.5rem 0.84rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+.blockBtn {
+  background: #d19527;
+  color: #fff;
+}
+.unblockBtn {
+  background: #229956;
+  color: #fff;
+}
+.deleteBtn {
+  background: #e53935;
+  color: #fff;
+}
+.blocked {
+  color: #e53935;
+  font-weight: 800;
+}
+.active {
+  color: #229956;
+  font-weight: 800;
+}

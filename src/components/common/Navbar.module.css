@@ -1,0 +1,203 @@
+:root {
+  --nav-bg: #fefefe;
+  --nav-border: #dde5f7;
+  --nav-link: #18336c;
+  --nav-link-hover: #c8aa65;
+  --nav-profile-bg: #f3f7fa;
+  --nav-active-bg: #f9f6ee;
+  --nav-shadow: 0 2px 16px #dde6ee25;
+  --nav-gold: #c8aa65;
+}
+
+.navbar {
+  background: var(--nav-bg);
+  border-bottom: 2px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  width: 100%;
+  padding: 0.22rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+.navContainer {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.38rem 2.2rem 0.38rem 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo section with more height */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  font-weight: 900;
+  color: var(--nav-link);
+  font-size: 1.6rem;
+  min-height: 60px;
+}
+.logoImg {
+  height: 52px;
+  width: 52px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+.logoText {
+  font-weight: 900;
+  color: var(--nav-gold);
+  font-size: 1.32em;
+  letter-spacing: 1px;
+  margin-top: 2.2px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.1rem;
+}
+
+/* Nav links */
+.navLink {
+  padding: 0.36rem 1.32rem;
+  border-radius: 0.9rem;
+  font-weight: 700;
+  color: var(--nav-link);
+  text-decoration: none;
+  font-size: 1.13rem;
+  letter-spacing: 0.4px;
+  transition: background 0.16s, color 0.15s;
+}
+.navLink:hover,
+.active {
+  color: var(--nav-gold);
+  background: var(--nav-active-bg);
+  font-weight: 900;
+}
+
+.cartLink {
+  position: relative;
+}
+.cartBadge {
+  position: absolute;
+  top: -3px;
+  right: -17px;
+  background: var(--nav-gold);
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 0.17rem 0.59rem;
+  border: 1.2px solid #ffeec6;
+  box-shadow: 0 1px 8px #c8aa6560;
+}
+
+/* Profile/Avatar & dropdown */
+.profileMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 2.1rem;
+}
+.profileAvatarBox {
+  display: flex;
+  align-items: center;
+  gap: 0.53rem;
+  cursor: pointer;
+  padding: 0.38rem 1rem 0.38rem 0.38rem;
+  border-radius: 2.1rem;
+  background: var(--nav-profile-bg);
+  border: 1.75px solid #ecf0ff;
+  transition: border-color 0.17s, box-shadow 0.23s;
+}
+.profileAvatarBox:focus,
+.profileAvatarBox:hover {
+  border-color: var(--nav-link-hover);
+  box-shadow: 0 2px 18px #c8aa6522;
+}
+
+.profileAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.8px solid var(--nav-gold);
+  box-shadow: 0 2px 13px #c8aa6528;
+}
+.profileNameShort {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--nav-link-hover);
+  margin-top: 2px;
+}
+
+/* Profile Dropdown */
+.profileDropdown {
+  position: absolute;
+  top: 108%;
+  right: 0;
+  background: #fffdfa;
+  border-radius: 1.12rem;
+  min-width: 173px;
+  box-shadow: 0 6px 28px #c8aa6540, 0 2px 8px #c8aa6520;
+  border: 1.7px solid #eceadd;
+  padding: 0.99rem 0 0.35rem 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 24;
+  animation: dropdown-entry 0.22s cubic-bezier(.19,2,.38,1.14);
+}
+@keyframes dropdown-entry {
+  from { opacity: 0; transform: translateY(-22px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+.profileDropdownLink, .profileDropdownBtn {
+  text-align: left;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.19rem;
+  color: #314365;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.71rem 1.41rem;
+  border-radius: 0.63rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.12s;
+}
+.profileDropdownLink:hover, .profileDropdownBtn:hover {
+  background: var(--nav-active-bg);
+  color: var(--nav-gold);
+}
+.profileDropdownBtn {
+  font-weight: 900;
+  margin-top: 0.19rem;
+  letter-spacing: 0.4px;
+}
+
+/* Login Button */
+.loginBtn {
+  padding: 0.61rem 1.6rem !important;
+  font-weight: 800;
+  font-size: 1.08rem;
+  border-radius: 1.04rem !important;
+  margin-left: 0.7rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  .navContainer {
+    flex-direction: column;
+    gap: 1.4rem;
+    padding-bottom: 0.5rem;
+  }
+  .navLinks {
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+  .profileMenu {
+    margin-left: 0.8rem;
+  }
+}

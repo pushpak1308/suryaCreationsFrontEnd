@@ -1,0 +1,45 @@
+.adminOrders {
+  background: #fff;
+  border-radius: 1.2rem;
+  padding: 2rem;
+  box-shadow: 0 2px 14px #e9e1cb33;
+  max-width: 1000px;
+  margin: 1rem auto;
+}
+.adminOrders h2 {
+  color: #174a7c;
+  margin-bottom: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f9f7ef;
+}
+.ordersTable th, .ordersTable td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #ecddbe;
+  font-size: 1.07rem;
+}
+.ordersTable th {
+  background: #f6ecce;
+  color: #745c28;
+  font-weight: 800;
+}
+.ordersTable button, .ordersTable select {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cab576;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #fff;
+  cursor: pointer;
+  margin-right: 6px;
+}
+.deleteBtn {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 5px #e5393519;
+}
