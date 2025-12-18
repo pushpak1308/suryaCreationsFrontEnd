@@ -9,16 +9,22 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
   const { getCartCount } = useCart();
+
   const [showDropdown, setShowDropdown] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const cartCount = getCartCount();
 
-  const isActive = (path) => (location.pathname === path ? styles.active : "");
+  const isActive = (path) =>
+    location.pathname === path ? styles.active : "";
 
-  const handleProfileClick = () => setShowDropdown((show) => !show);
+  const closeAllMenus = () => {
+    setMenuOpen(false);
+    setShowDropdown(false);
+  };
 
   const handleLogout = () => {
-    setShowDropdown(false);
+    closeAllMenus();
     logout();
     navigate("/login");
   };
@@ -26,7 +32,9 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
-        <Link to="/" className={styles.logo}>
+
+        {/* LEFT: Logo */}
+        <Link to="/" className={styles.logo} onClick={closeAllMenus}>
           <img
             src="/logo.svg"
             alt="Surya Creations"
@@ -35,21 +43,43 @@ const Navbar = () => {
           <span className={styles.logoText}>Surya Creations</span>
         </Link>
 
-        <div className={styles.navLinks}>
-          <Link to="/" className={`${styles.navLink} ${isActive("/")}`}>
+        {/* RIGHT: Hamburger (mobile only via CSS) */}
+        <button
+          className={styles.menuToggle}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label="Toggle navigation menu"
+        >
+          ☰
+        </button>
+
+        {/* DROPDOWN NAV LINKS */}
+        <div
+          className={`${styles.navLinks} ${
+            menuOpen ? styles.open : ""
+          }`}
+        >
+          <Link
+            to="/"
+            className={`${styles.navLink} ${isActive("/")}`}
+            onClick={closeAllMenus}
+          >
             Home
           </Link>
+
           <Link
             to="/products"
             className={`${styles.navLink} ${isActive("/products")}`}
+            onClick={closeAllMenus}
           >
             Products
           </Link>
+
           <Link
             to="/cart"
             className={`${styles.navLink} ${styles.cartLink} ${isActive(
               "/cart"
             )}`}
+            onClick={closeAllMenus}
           >
             🛒 Cart
             {cartCount > 0 && (
@@ -61,11 +91,14 @@ const Navbar = () => {
             <div className={styles.profileMenu}>
               <div
                 className={styles.profileAvatarBox}
-                onClick={handleProfileClick}
+                onClick={() =>
+                  setShowDropdown((show) => !show)
+                }
               >
                 <img
                   src={
-                    user?.avatar || `https://i.pravatar.cc/48?u=${user?.email}`
+                    user?.avatar ||
+                    `https://i.pravatar.cc/48?u=${user?.email}`
                   }
                   alt="Profile"
                   className={styles.profileAvatar}
@@ -77,22 +110,25 @@ const Navbar = () => {
                   {user?.firstName}
                 </span>
               </div>
+
               {showDropdown && (
                 <div className={styles.profileDropdown}>
                   <Link
                     to="/profile"
                     className={styles.profileDropdownLink}
-                    onClick={() => setShowDropdown(false)}
+                    onClick={closeAllMenus}
                   >
                     👤 My Profile
                   </Link>
+
                   <Link
                     to="/orders"
                     className={styles.profileDropdownLink}
-                    onClick={() => setShowDropdown(false)}
+                    onClick={closeAllMenus}
                   >
                     📦 My Orders
                   </Link>
+
                   <button
                     onClick={handleLogout}
                     className={styles.profileDropdownBtn}
@@ -103,7 +139,11 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className={`btn btn-primary ${styles.loginBtn}`}>
+            <Link
+              to="/login"
+              className={`btn btn-primary ${styles.loginBtn}`}
+              onClick={closeAllMenus}
+            >
               Login
             </Link>
           )}

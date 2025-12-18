@@ -19,16 +19,19 @@
   top: 0;
   z-index: 99;
 }
+
 .navContainer {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 0.38rem 2.2rem 0.38rem 2.2rem;
+  padding: 0.38rem 2.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  flex-wrap: nowrap;
 }
 
-/* Logo section with more height */
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -38,6 +41,7 @@
   color: var(--nav-link);
   font-size: 1.6rem;
   min-height: 60px;
+  white-space: nowrap;
 }
 .logoImg {
   height: 52px;
@@ -53,13 +57,14 @@
   margin-top: 2.2px;
 }
 
+/* Nav Links */
 .navLinks {
   display: flex;
   align-items: center;
   gap: 2.1rem;
 }
 
-/* Nav links */
+/* Nav link items */
 .navLink {
   padding: 0.36rem 1.32rem;
   border-radius: 0.9rem;
@@ -77,6 +82,7 @@
   font-weight: 900;
 }
 
+/* Cart */
 .cartLink {
   position: relative;
 }
@@ -94,7 +100,7 @@
   box-shadow: 0 1px 8px #c8aa6560;
 }
 
-/* Profile/Avatar & dropdown */
+/* Profile */
 .profileMenu {
   position: relative;
   display: flex;
@@ -117,7 +123,6 @@
   border-color: var(--nav-link-hover);
   box-shadow: 0 2px 18px #c8aa6522;
 }
-
 .profileAvatar {
   width: 44px;
   height: 44px;
@@ -133,7 +138,7 @@
   margin-top: 2px;
 }
 
-/* Profile Dropdown */
+/* Profile dropdown */
 .profileDropdown {
   position: absolute;
   top: 108%;
@@ -177,7 +182,7 @@
   letter-spacing: 0.4px;
 }
 
-/* Login Button */
+/* Login button */
 .loginBtn {
   padding: 0.61rem 1.6rem !important;
   font-weight: 800;
@@ -186,18 +191,80 @@
   margin-left: 0.7rem;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 900px) {
+/* Hamburger button (mobile) */
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--nav-link);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+
   .navContainer {
-    flex-direction: column;
-    gap: 1.4rem;
-    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    position: relative;
+    max-width: 100%;
+    margin:0;
+
   }
+
+  .navbar {
+  width: 100%;
+  left: 0;
+}
+
+  .menuToggle {
+    display: block;
+  }
+
+  /* Hide links by default */
   .navLinks {
-    flex-wrap: wrap;
-    gap: 0.9rem;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 1320px;
+    padding: 0.8rem 1rem;
+    background: var(--nav-bg);
+    box-shadow: var(--nav-shadow);
+    border-bottom: 2px solid var(--nav-border);
+    z-index: 20;
+    gap: 0.6rem; 
   }
+
+  .navLinks.open {
+    display: flex;
+  }
+
+  .navLink {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+
   .profileMenu {
-    margin-left: 0.8rem;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .profileAvatarBox {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .logoImg {
+    height: 36px;
+    width: 36px;
+  }
+  .logoText {
+    font-size: 1.1rem;
+    white-space: nowrap;
   }
 }

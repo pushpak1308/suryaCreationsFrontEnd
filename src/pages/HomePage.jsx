@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { categoryService } from "../services/categoryService";
+import { productService } from "../services/productService";
 import "../styles/HomePage.css";
 
 // Diwali/Festival carousel banners
@@ -18,64 +20,6 @@ const heroBanners = [
     img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200",
     alt: "Luxury Cases",
     caption: "Premium Cases & Mugs – Celebrate in Style",
-  },
-];
-
-const categories = [
-  {
-    slug: "phone-cases",
-    name: "Phone Cases",
-    icon: "📱",
-    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=550",
-  },
-  {
-    slug: "t-shirts",
-    name: "T-shirts",
-    icon: "👕",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=550",
-  },
-  {
-    slug: "mugs",
-    name: "Mugs",
-    icon: "☕",
-    image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=550",
-  },
-  {
-    slug: "canvas-prints",
-    name: "Canvas Prints",
-    icon: "🖼️",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=550",
-  },
-];
-
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Hard Phone Case",
-    imageUrl:
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400",
-    price: 299,
-  },
-  {
-    id: 2,
-    name: "Premium Tee",
-    imageUrl:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
-    price: 599,
-  },
-  {
-    id: 3,
-    name: "Ceramic Mug",
-    imageUrl:
-      "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400",
-    price: 249,
-  },
-  {
-    id: 4,
-    name: "Canvas Print",
-    imageUrl:
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400",
-    price: 799,
   },
 ];
 
@@ -141,8 +85,11 @@ const howSteps = [
 ];
 
 const HomePage = () => {
-  // Banner carousel logic
   const [bannerIdx, setBannerIdx] = useState(0);
+  const [categories, setCategories] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+
+  // Banner carousel auto-slide
   useEffect(() => {
     const timer = setInterval(
       () => setBannerIdx((idx) => (idx + 1) % heroBanners.length),
@@ -151,9 +98,33 @@ const HomePage = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Fetch categories and featured products
+  useEffect(() => {
+    fetchCategories();
+    fetchFeaturedProducts();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const data = await categoryService.getAllCategories();
+      setCategories(data);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
+
+  const fetchFeaturedProducts = async () => {
+    try {
+      const data = await productService.getFeaturedProducts(); // You may need to add this method in productService
+      setFeaturedProducts(data.slice(0, 4)); // Show only first 4
+    } catch (err) {
+      console.error("Error fetching featured products:", err);
+    }
+  };
+
   return (
     <div className="lux-homepage">
-      {/* Animated luxury carousel */}
+      {/* Hero Banner */}
       <section className="lux-hero-banner-carousel">
         <img
           src={heroBanners[bannerIdx].img}
@@ -165,24 +136,24 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Category horizontal scroller */}
+      {/* Shop By Category */}
       <section className="lux-categories-scroller">
         <h2 className="lux-section-title">Shop By Category</h2>
         <div className="lux-categories-scroll">
           {categories.map((c) => (
             <Link
-              key={c.slug}
+              key={c.id}
               to={`/products?category=${c.slug}`}
               className="lux-category-scroll-card"
             >
-              <img src={c.image} alt={c.name} />
+              <img src={c.image || "https://via.placeholder.com/150"} alt={c.name} />
               <span>{c.name}</span>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Featured Festival Products */}
+      {/* Festival / Featured Products */}
       <section className="lux-featured-festival-row">
         <h2 className="lux-section-title">Festival Favorites</h2>
         <div className="lux-featured-scroll">
@@ -196,7 +167,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Reviews With Images */}
+      {/* Testimonials */}
       <section className="lux-reviews-scroll">
         <h2 className="lux-section-title">What Our Customers Say</h2>
         <div className="lux-reviews-row">
@@ -216,7 +187,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* How It Works With Images */}
+      {/* How It Works */}
       <section className="lux-howworks-images">
         <h2 className="lux-section-title">How It Works</h2>
         <div className="lux-howimages-row">
@@ -229,17 +200,13 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Brands Row */}
+      {/* Brands */}
       <section className="lux-hero-brands">
         {brands.map((b) => (
-          <img
-            key={b.name}
-            src={b.image}
-            alt={b.name}
-            className="lux-brand-logo"
-          />
+          <img key={b.name} src={b.image} alt={b.name} className="lux-brand-logo" />
         ))}
       </section>
+
       <section className="lux-hero-trust">
         <span>🚚 Free Shipping ₹500+</span> &bull;{" "}
         <span>🔒 Secure Checkout</span> &bull;{" "}
