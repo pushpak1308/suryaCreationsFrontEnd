@@ -36,7 +36,7 @@ const Navbar = () => {
         {/* LEFT: Logo */}
         <Link to="/" className={styles.logo} onClick={closeAllMenus}>
           <img
-            src="/logo.svg"
+            src="/logo.jpeg"
             alt="Surya Creations"
             className={styles.logoImg}
           />

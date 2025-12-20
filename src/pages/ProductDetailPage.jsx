@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { productService } from "../services/productService";
 import { useCart } from "../context/CartContext";
 import "../styles/ProductDetailPage.css";
+import SizeDropdown from "../components/common/sizeDrowpdown";
 
 const ProductDetailPage = () => {
   const { slug } = useParams();
@@ -215,6 +216,8 @@ const ProductDetailPage = () => {
                 {product.isCustomizable && <li>✨ 100% Customizable Design</li>}
               </ul>
             </div>
+
+            <SizeDropdown/>
 
             {/* Quantity Selector */}
             <div className="quantity-section">
