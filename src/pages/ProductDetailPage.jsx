@@ -15,6 +15,7 @@ const ProductDetailPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [imageError, setImageError] = useState(false);
+  const [selectedSize, setSelectedSize] = useState("");
 
   const { addToCart, isInCart } = useCart();
 
@@ -217,7 +218,14 @@ const ProductDetailPage = () => {
               </ul>
             </div>
 
-            <SizeDropdown/>
+            <div>
+              <SizeDropdown
+                label="Size"
+                sizes={product.sizeList}
+                value={selectedSize}
+                onChange={setSelectedSize}
+              />
+            </div>
 
             {/* Quantity Selector */}
             <div className="quantity-section">
