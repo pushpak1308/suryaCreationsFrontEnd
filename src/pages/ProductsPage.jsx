@@ -12,6 +12,9 @@ const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Mobile dropdown state
+  const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
+
   useEffect(() => {
     fetchCategories();
     fetchProducts();
@@ -31,17 +34,13 @@ const ProductsPage = () => {
       setLoading(true);
       setError(null);
 
-      let data;
-      if (categoryId) {
-        data = await productService.getProductsByCategory(categoryId);
-      } else {
-        data = await productService.getAllProducts();
-      }
+      const data = categoryId
+        ? await productService.getProductsByCategory(categoryId)
+        : await productService.getAllProducts();
 
       setProducts(data);
     } catch (err) {
       setError("Failed to load products. Please try again later.");
-      console.error("Error fetching products:", err);
     } finally {
       setLoading(false);
     }
@@ -50,6 +49,7 @@ const ProductsPage = () => {
   const handleCategoryClick = (categoryId) => {
     setSelectedCategory(categoryId);
     fetchProducts(categoryId);
+    setIsMobileCategoriesOpen(false); // close dropdown on mobile
   };
 
   const handleSearch = async (e) => {
@@ -60,7 +60,7 @@ const ProductsPage = () => {
         const data = await productService.searchProducts(searchQuery);
         setProducts(data);
         setSelectedCategory(null);
-      } catch (err) {
+      } catch {
         setError("Search failed. Please try again.");
       } finally {
         setLoading(false);
@@ -72,7 +72,12 @@ const ProductsPage = () => {
     setSelectedCategory(null);
     setSearchQuery("");
     fetchProducts();
+    setIsMobileCategoriesOpen(false);
   };
+
+  const selectedCategoryName =
+    selectedCategory &&
+    categories.find((c) => c.id === selectedCategory)?.name;
 
   return (
     <div className="products-page">
@@ -82,7 +87,6 @@ const ProductsPage = () => {
           <h1>Our Products</h1>
           <p>Customize your favorite items with your unique designs</p>
 
-          {/* Search Bar */}
           <form onSubmit={handleSearch} className="search-form">
             <input
               type="text"
@@ -100,31 +104,59 @@ const ProductsPage = () => {
 
       <div className="container">
         <div className="products-layout">
-          {/* Sidebar - Categories */}
+          {/* Sidebar */}
           <aside className="products-sidebar">
             <div className="sidebar-section">
-              <h3>Categories</h3>
-              <button
-                className={`category-btn ${!selectedCategory ? "active" : ""}`}
-                onClick={handleShowAll}
+              {/* Mobile dropdown header */}
+              <div
+                className="mobile-categories-header"
+                onClick={() =>
+                  setIsMobileCategoriesOpen(!isMobileCategoriesOpen)
+                }
               >
-                All Products
-              </button>
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  className={`category-btn ${
-                    selectedCategory === category.id ? "active" : ""
+                <span>
+                  {selectedCategoryName || "Categories"}
+                </span>
+                <span
+                  className={`arrow ${
+                    isMobileCategoriesOpen ? "open" : ""
                   }`}
-                  onClick={() => handleCategoryClick(category.id)}
                 >
-                  {category.name}
+                  ▼
+                </span>
+              </div>
+
+              {/* Categories */}
+              <div
+                className={`categories-list ${
+                  isMobileCategoriesOpen ? "open" : ""
+                }`}
+              >
+                <button
+                  className={`category-btn ${
+                    !selectedCategory ? "active" : ""
+                  }`}
+                  onClick={handleShowAll}
+                >
+                  All Products
                 </button>
-              ))}
+
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    className={`category-btn ${
+                      selectedCategory === category.id ? "active" : ""
+                    }`}
+                    onClick={() => handleCategoryClick(category.id)}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
             </div>
           </aside>
 
-          {/* Main Content - Products Grid */}
+          {/* Main Content */}
           <main className="products-main">
             {loading ? (
               <div className="loading-state">
@@ -153,9 +185,13 @@ const ProductsPage = () => {
                   Showing {products.length} product
                   {products.length !== 1 ? "s" : ""}
                 </div>
+
                 <div className="products-grid">
                   {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                    />
                   ))}
                 </div>
               </>
