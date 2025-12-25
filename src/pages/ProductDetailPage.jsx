@@ -15,7 +15,9 @@ const ProductDetailPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [imageError, setImageError] = useState(false);
-  const [selectedSize, setSelectedSize] = useState("");
+
+  // ❗ use variant id instead of plain size string
+  const [selectedVariantId, setSelectedVariantId] = useState("");
 
   const { addToCart, isInCart } = useCart();
 
@@ -29,6 +31,11 @@ const ProductDetailPage = () => {
       setError(null);
       const data = await productService.getProductBySlug(slug);
       setProduct(data);
+
+      // preselect first variant if present
+      if (data?.variants && data.variants.length > 0) {
+        setSelectedVariantId(String(data.variants[0].id));
+      }
     } catch (err) {
       setError("Product not found");
       console.error("Error fetching product:", err);
@@ -38,6 +45,7 @@ const ProductDetailPage = () => {
   };
 
   const formatPrice = (price) => {
+    if (price == null) return "";
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "INR",
@@ -46,7 +54,6 @@ const ProductDetailPage = () => {
   };
 
   const getProductImages = () => {
-    // For now, return single image or placeholder
     if (product?.imageUrl && !imageError) {
       return [product.imageUrl];
     }
@@ -81,12 +88,35 @@ const ProductDetailPage = () => {
     setImageError(true);
   };
 
+  // 🔍 derive current variant + price
+  const variants = product?.variants || [];
+  const selectedVariant = variants.find(
+    (v) => String(v.id) === String(selectedVariantId)
+  );
+  const effectivePrice =
+    selectedVariant?.price != null ? selectedVariant.price : product?.basePrice;
+
   const handleAddToCart = () => {
-    addToCart(product, quantity);
-    // Show success feedback
+    if (!selectedVariant) {
+      alert("Please select a size/variant first.");
+      return;
+    }
+
+    // enrich product with variant info
+    addToCart(
+      {
+        ...product,
+        selectedVariantId: selectedVariant.id,
+        selectedSize: selectedVariant.size,
+        price: selectedVariant.price,
+        stock: selectedVariant.stock,
+      },
+      quantity
+    );
+
     const alertDiv = document.createElement("div");
     alertDiv.className = "cart-success-alert";
-    alertDiv.innerHTML = `✅ Added ${quantity} x ${product.name} to cart!`;
+    alertDiv.innerHTML = `✅ Added ${quantity} x ${product.name} (${selectedVariant.size}) to cart!`;
     document.body.appendChild(alertDiv);
 
     setTimeout(() => {
@@ -95,7 +125,21 @@ const ProductDetailPage = () => {
   };
 
   const handleBuyNow = () => {
-    addToCart(product, quantity);
+    if (!selectedVariant) {
+      alert("Please select a size/variant first.");
+      return;
+    }
+
+    addToCart(
+      {
+        ...product,
+        selectedVariantId: selectedVariant.id,
+        selectedSize: selectedVariant.size,
+        price: selectedVariant.price,
+        stock: selectedVariant.stock,
+      },
+      quantity
+    );
     navigate("/cart");
   };
 
@@ -186,8 +230,11 @@ const ProductDetailPage = () => {
               </span>
             </div>
 
+            {/* 🔁 show price from selected variant if available */}
             <div className="product-price-section">
-              <div className="price-main">{formatPrice(product.basePrice)}</div>
+              <div className="price-main">
+                {effectivePrice ? formatPrice(effectivePrice) : "—"}
+              </div>
               <div className="price-info">
                 <span className="tax-info">Inclusive of all taxes</span>
               </div>
@@ -218,12 +265,19 @@ const ProductDetailPage = () => {
               </ul>
             </div>
 
+            {/* 🔁 Size + price + stock dropdown using product.variants */}
             <div>
               <SizeDropdown
-                label="Size"
-                sizes={product.sizeList}
-                value={selectedSize}
-                onChange={setSelectedSize}
+                label="Size / Variant"
+                sizes={variants.map((v) => ({
+                  id: v.id,
+                  label: `${v.size} - ${formatPrice(v.price)}${
+                    v.stock != null ? ` (${v.stock} left)` : ""
+                  }`,
+                }))}
+                value={selectedVariantId}
+                onChange={setSelectedVariantId}
+                disabled={variants.length === 0}
               />
             </div>
 
@@ -254,12 +308,14 @@ const ProductDetailPage = () => {
               <button
                 className="btn btn-primary btn-lg btn-block"
                 onClick={handleAddToCart}
+                disabled={!selectedVariant}
               >
                 {isInCart(product.id) ? "✓ Add More to Cart" : "🛒 Add to Cart"}
               </button>
               <button
                 className="btn btn-secondary btn-lg btn-block"
                 onClick={handleBuyNow}
+                disabled={!selectedVariant}
               >
                 ⚡ Buy Now
               </button>
