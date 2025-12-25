@@ -27,3 +27,4 @@ export const SOCIAL_LINKS = {
 };
 
 export const API_BASE_URL = "https://suryacreationsproject-1.onrender.com/api";
+// export const API_BASE_URL = "http://localhost:8000/api";
