@@ -54,20 +54,20 @@ const brands = [
   },
 ];
 
-const faqs = [
-  {
-    q: "How fast will I get my order?",
-    a: "Most personalized products ship in 2-4 days, delivery in 2-6 days across India.",
-  },
-  {
-    q: "Can I return if I don't like it?",
-    a: "Absolutely! 30-day satisfaction guarantee on every order.",
-  },
-  {
-    q: "How do I upload my own design?",
-    a: "Just click 'Custom Order', choose your product, and upload your image directly in our portal!",
-  },
-];
+// const faqs = [
+//   {
+//     q: "How fast will I get my order?",
+//     a: "Most personalized products ship in 2-4 days, delivery in 2-6 days across India.",
+//   },
+//   {
+//     q: "Can I return if I don't like it?",
+//     a: "Absolutely! 30-day satisfaction guarantee on every order.",
+//   },
+//   {
+//     q: "How do I upload my own design?",
+//     a: "Just click 'Custom Order', choose your product, and upload your image directly in our portal!",
+//   },
+// ];
 
 const howSteps = [
   {
@@ -155,7 +155,7 @@ const HomePage = () => {
 
       {/* Festival / Featured Products */}
       <section className="lux-featured-festival-row">
-        <h2 className="lux-section-title">Festival Favorites</h2>
+        <h2 className="lux-section-title">Best  Sellers</h2>
         <div className="lux-featured-scroll">
           {featuredProducts.map((prod) => (
             <div key={prod.id} className="lux-featured-scroll-card">
@@ -168,7 +168,7 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="lux-reviews-scroll">
+      {/* <section className="lux-reviews-scroll">
         <h2 className="lux-section-title">What Our Customers Say</h2>
         <div className="lux-reviews-row">
           {testimonials.map((t) => (
@@ -185,7 +185,7 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* How It Works */}
       <section className="lux-howworks-images">
@@ -201,17 +201,13 @@ const HomePage = () => {
       </section>
 
       {/* Brands */}
-      <section className="lux-hero-brands">
+      {/* <section className="lux-hero-brands">
         {brands.map((b) => (
           <img key={b.name} src={b.image} alt={b.name} className="lux-brand-logo" />
         ))}
-      </section>
+      </section> */}
 
-      <section className="lux-hero-trust">
-        <span>🚚 Free Shipping ₹500+</span> &bull;{" "}
-        <span>🔒 Secure Checkout</span> &bull;{" "}
-        <span>↩️ Easy Luxury Returns</span>
-      </section>
+   
 
       {/* Stats */}
       <section className="lux-stats">
@@ -231,8 +227,17 @@ const HomePage = () => {
         </div>
       </section>
 
+
+
+
+         <section className="lux-hero-trust">
+        <span>🚚 Free Shipping</span> &bull;{" "}
+        <span>🔒 Secure Checkout</span> &bull;{" "}
+        <span>↩️ Easy Returns</span>
+      </section>
+
       {/* FAQs */}
-      <section className="lux-faqs">
+      {/* <section className="lux-faqs">
         <h2 className="lux-section-title">FAQs</h2>
         <div className="lux-faq-row">
           {faqs.map((f, i) => (
@@ -242,7 +247,7 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* About */}
       <section className="lux-about">
@@ -251,7 +256,7 @@ const HomePage = () => {
           <ul>
             <li>✅ Best print, best finish, best gift — for you.</li>
             <li>✅ Personalized. Premium. Delivered ultra-fast.</li>
-            <li>✅ 30-day luxury returns, global delivery.</li>
+            <li>✅ Global delivery.</li>
           </ul>
           <Link to="/products" className="btn btn-secondary btn-lg">
             Browse Collection
@@ -269,9 +274,9 @@ const HomePage = () => {
             <Link to="/products" className="lux-footer-link">
               Shop
             </Link>
-            <Link to="/login" className="lux-footer-link">
+            {/* <Link to="/login" className="lux-footer-link">
               Login
-            </Link>
+            </Link> */}
           </div>
         </div>
       </footer>

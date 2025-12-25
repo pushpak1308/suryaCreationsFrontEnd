@@ -178,35 +178,50 @@
 }
 
 /* ---------- How It Works ---------- */
+
+/* ---------- How It Works ---------- */
+
+.lux-section-title{
+  top: -2px;
+}
 .lux-howworks-images {
   background: #f5f6fa;
-  padding: 3rem 0;
+  padding: 0.5rem 0; /* 🔽 reduced height */
 }
 
 .lux-howimages-row {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* 🔹 force one horizontal line */
 }
 
 .lux-howimages-step {
   background: #fffceb;
   border-radius: 1.25rem;
-  padding: 1rem 1.1rem;
+  padding: 0.8rem 1rem; /* 🔽 reduced padding */
   box-shadow: 0 1px 4px #cdebf344;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.4rem;
+  width: 150px; /* 🔹 keeps all 3 boxes equal */
+  text-align: center;
 }
 
 .lux-howimages-step img {
-  width: 75px;
-  height: 75px;
+  width: 60px;  /* 🔽 smaller image */
+  height: 60px;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 0.8rem;
 }
+
+.lux-howimages-step div {
+  font-size: 0.65rem; /* 🔽 compact text */
+  font-weight: 600;
+}
+
+
 
 /* ---------- Brands / Trust ---------- */
 .lux-hero-brands {
@@ -224,7 +239,7 @@
 }
 
 .lux-hero-trust {
-  font-size: 1rem;
+  font-size: 0.65rem;
   color: #aa9754;
   opacity: 0.89;
   text-align: center;
@@ -251,7 +266,7 @@
 }
 
 .lux-stat-item h3 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: #aa9754;
 }
@@ -298,7 +313,7 @@
 /* ---------- About Section ---------- */
 .lux-about {
   background: linear-gradient(90deg, #fcf9e7 0%, #f8f9fa 100%);
-  padding: 4rem 0;
+  padding: 0.2rem 0;
 }
 
 .lux-about-card {
@@ -307,14 +322,16 @@
   background: #fff;
   box-shadow: 0 2px 12px #ceb67e30;
   border-radius: 1.5rem;
-  padding: 2.3rem 2rem;
+  padding: 0.65rem 0rem;
   text-align: center;
 }
 
 .lux-about-card h2 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 .lux-about-card ul {
@@ -324,21 +341,32 @@
 }
 
 .lux-about-card li {
-  font-size: 1.07rem;
+  font-size: 0.75rem;
   color: #444;
   margin: 0.5rem 0;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 .lux-about-card .btn {
-  margin-top: 0.8rem;
+  margin-top: 0rem;
 }
+
+
+/* About section button - minimize size */
+.lux-about-card .btn {
+  padding: 0.45rem 1rem;   
+  font-size: 0.9rem;      
+  border-radius: 0.6rem;   
+}
+
 
 /* ---------- Footer ---------- */
 .lux-footer {
   background: #c8aa65;
   color: #fff;
-  padding: 1.4rem 0;
-  margin-top: 3rem;
+  padding: 0.2rem 0;
+  margin-top: 0.5rem;
 }
 
 .lux-footer-flex {
@@ -353,7 +381,7 @@
 
 .lux-footer-brand {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.65rem;
 }
 
 .lux-footer-links {
@@ -367,7 +395,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.65rem;
 }
 
 .lux-footer-link:hover {

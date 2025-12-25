@@ -5,14 +5,27 @@ const Footer = () => (
   <>
     <style>
       {`
+      /* Footer Logo */
+      .footer-logo {
+        height: 40px;
+        width: auto;
+        margin-bottom: 0rem;
+        object-fit: contain;
+      }
+
+      /* Footer links */
       .footer-link {
         color: #d1d5db;
         text-decoration: none;
         transition: color 0.15s;
+        font-size: 0.65rem;
       }
+
       .footer-link:hover {
         color: #ffffff;
       }
+
+      /* Social icons */
       .social-link {
         display: inline-flex;
         align-items: center;
@@ -26,165 +39,123 @@ const Footer = () => (
         font-size: 1.1rem;
         transition: background 0.15s, color 0.15s, border-color 0.15s;
       }
+
       .social-link:hover {
         background: #fbbf24;
         border-color: #fbbf24;
         color: #111827;
       }
+
+      /* Footer columns */
+      .footer-columns {
+        display: flex;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+
+      .footer-col {
+        min-width: 160px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 0.15rem;
+        font-size: 0.65rem;
+      }
+
+      /* Remove right alignment from contact section */
+      .footer-col.md\\:text-right {
+        text-align: left;
+      }
+
+      /* Social icons align left */
+      .footer-col .flex {
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer-top-row {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 767px) {
         .footer-columns {
-  display: flex;
-  gap: 3rem;
-  align-items: flex-start;
-}
-.footer-col {
-  min-width: 160px;
-}
-
- @media (min-width: 768px) {
-    .footer-top-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-  }
-  @media (max-width: 767px) {
-    .footer-columns {
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-  }
-
-
+          flex-direction: column;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+      }
       `}
     </style>
 
-    <footer className="bg-dark text-white py-8 mt-16">
+    <footer className="bg-dark text-white pt-4 pb-6 mt-4">
       <div className="container mx-auto px-4">
-        {/* Top row: logo + 3 columns, horizontal on md+ */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-          {/* About Section */}
           <div className="footer-top-row">
             <div className="md:max-w-xs flex-shrink-0">
-              <img
-                src="/logo.svg"
-                alt={BRAND.name}
-                className="h-12 mb-3 filter brightness-0 invert"
-              />
-              <h3 className="font-bold text-xl mb-2">{BRAND.name}</h3>
-              <p className="text-gray-400 text-sm md:text-base">
-                {BRAND.description}
-              </p>
+              <h3 className="font-semibold text-sm mb-0 mt-0">
+                {BRAND.name}
+              </h3>
             </div>
+
             <div className="footer-columns">
               <div className="footer-col">
-                {/* Quick Links */}
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-primary">
-                    Quick Links
-                  </h4>
-                  <ul className="space-y-1 text-sm md:text-base">
-                    <li>
-                      <a href="/" className="footer-link">
-                        Home
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/products" className="footer-link">
-                        Products
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/about" className="footer-link">
-                        About Us
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/contact" className="footer-link">
-                        Contact
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                <h4 className="font-semibold text-sm mb-2 text-primary">
+                  Quick Links
+                </h4>
+                <ul>
+                  <li><a href="/" className="footer-link">Home</a></li>
+                  <li><a href="/products" className="footer-link">Products</a></li>
+                  <li><a href="/about" className="footer-link">About Us</a></li>
+                  <li><a href="/contact" className="footer-link">Contact</a></li>
+                </ul>
               </div>
 
               <div className="footer-col">
-                |{/* Customer Service */}
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-primary">
-                    Customer Service
-                  </h4>
-                  <ul className="space-y-1 text-sm md:text-base">
-                    <li>
-                      <a href="/shipping" className="footer-link">
-                        Shipping Info
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/returns" className="footer-link">
-                        Returns
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/faq" className="footer-link">
-                        FAQ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/privacy" className="footer-link">
-                        Privacy Policy
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                <h4 className="font-semibold text-sm mb-2 text-primary">
+                  Customer Service
+                </h4>
+                <ul>
+                  <li><a href="/shipping" className="footer-link">Shipping Info</a></li>
+                  <li><a href="/returns" className="footer-link">Returns</a></li>
+                  <li><a href="/faq" className="footer-link">FAQ</a></li>
+                  <li><a href="/privacy" className="footer-link">Privacy Policy</a></li>
+                </ul>
               </div>
+
               <div className="footer-col md:text-right">
-                {/* Contact Info */}
-                <div className="md:text-right">
-                  <h4 className="font-semibold text-lg mb-3 text-primary">
-                    Contact Us
-                  </h4>
-                  <ul className="space-y-1 text-gray-400 text-sm md:text-base">
-                    <li>📧 {CONTACT.email}</li>
-                    <li>📞 {CONTACT.phone}</li>
-                    <li>📍 {CONTACT.address}</li>
-                  </ul>
-                  <div className="flex md:justify-end gap-4 mt-4">
-                    <a
-                      href={SOCIAL_LINKS.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link"
-                    >
-                      📘
-                    </a>
-                    <a
-                      href={SOCIAL_LINKS.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link"
-                    >
-                      📷
-                    </a>
-                    <a
-                      href={SOCIAL_LINKS.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link"
-                    >
-                      🐦
-                    </a>
-                  </div>
+                <h4 className="font-semibold text-sm mb-2 text-primary">
+                  Contact Us
+                </h4>
+                <ul className="text-gray-400">
+                  <li>📧 {CONTACT.email}</li>
+                  <li>📞 {CONTACT.phone}</li>
+                  <li>📍 {CONTACT.address}</li>
+                </ul>
+
+                <div className="flex gap-4 mt-2">
+                  <a href={SOCIAL_LINKS.facebook} className="social-link">📘</a>
+                  <a href={SOCIAL_LINKS.instagram} className="social-link">📷</a>
+                  <a href={SOCIAL_LINKS.twitter} className="social-link">🐦</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Bottom bar */}
-        <div className="border-t border-gray-700 mt-6 pt-4 flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs md:text-sm">
+
+        <div className="border-t border-gray-700 mt-4 pt-3 flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs">
           <p>© 2025 {BRAND.name}. All Rights Reserved.</p>
-          <p className="mt-2 md:mt-0">Made with ❤️ in India</p>
+          <p className="mt-1 md:mt-0">Made with ❤️ in India</p>
         </div>
       </div>
     </footer>
