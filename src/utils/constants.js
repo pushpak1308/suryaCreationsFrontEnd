@@ -15,9 +15,9 @@ export const COLORS = {
 };
 
 export const CONTACT = {
-  email: "info@suryacreations.com",
-  phone: "+91 98765 43210",
-  address: "Hyderabad, India",
+  email: "splmansa002@gmail.com",
+  phone: "+91 62390 85932",
+  address: "Mansa, Punjab",
 };
 
 export const SOCIAL_LINKS = {
